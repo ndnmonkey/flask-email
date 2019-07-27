@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron" style="padding-left: 60px" >
+      <h1>Hello, User!</h1>
+      <p>   Please enter the verification code into the binding bar!</p>
+        <p>Verification code is:   </p>
+        <form action="" method="post">
+            <input name="vcode" type="text"  placeholder="Please enter your vertifacation code!" >
+            <input type="submit" value="Submit">
+        </form>
+
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+    </div>
+
+
+
+
+{% endblock %}
