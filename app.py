@@ -1,4 +1,4 @@
-from flask import Flask,render_template,g,request
+from flask import Flask,render_template,g,request,flash
 from flask_mail import Mail, Message
 import config
 import random
@@ -18,7 +18,7 @@ def generate_verification_code():
         if emai_key[0] != 0:
             return emai_key
 
-@app.route('/',methods=["POST","GET"])
+@app.route('/vertificate/',methods=["POST","GET"])
 def index():
     if request.method == "GET":
         #最多刷新1次,因为每刷新一次都会发一条邮件，所以限制发送次数。
@@ -35,18 +35,18 @@ def index():
             # 邮件内容会以文本和html两种格式呈现，而你能看到哪种格式取决于你的邮件客户端。
             msg.body = code_to_html(verification_code)
             msg.html = code_to_html(verification_code)
-            mail.send(msg)
+            # mail.send(msg)
 
-        return render_template('index.html')
+        return render_template('vertificate.html')
     else:
         vcoede = request.form.get("vcode")
-        #填错了怎么办？
         if vcoede == vercoede_pool[-1]:  #最新发送的代码才有效，所以是[-1]。
-            print(vcoede)
+            # print(vcoede)
             vercoede_pool.pop() #输入值与最新验证码一样才能pop
             return render_template('success.html')
         else:
-            return '验证码错误！'
+            flash("电话或密码不正确！")
+            return render_template('vertificate.html')
 
 
 

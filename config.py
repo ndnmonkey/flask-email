@@ -1,3 +1,6 @@
+import os
+SECRET_KEY = os.urandom(24)
+
 MAIL_DEBUG = True             # 开启debug，便于调试看信息
 MAIL_SUPPRESS_SEND = False    # 发送邮件，为True则不发送
 MAIL_SERVER = 'smtp.qq.com'   # 邮箱服务器
